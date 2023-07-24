@@ -26,10 +26,11 @@ pipeline {
   -Dsonar.login=b44f2ef23b740585326b92c191564bc580ea84e6"
         }
       } 
-    }
 
-    
-  
-   
-  }
+
+
+
+
+	  
+    }  
 }   
