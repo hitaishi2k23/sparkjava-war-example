@@ -21,38 +21,11 @@ pipeline {
     stage('SonarQube_Analysis') {
       steps {
 	   sh "mvn sonar:sonar \
-  -Dsonar.projectKey=java-app \
   -Dsonar.host.url=http://18.207.190.98:9000 \
   -Dsonar.login=b44f2ef23b740585326b92c191564bc580ea84e6"
         }
       } 
-	  stage('Artifacts') {
-      steps {     
-		rtServer (
-		    id: 'jfrog1',
-		    timeout: 300,
-		    url: 'http://52.6.97.59:8082/',
-		    username: 'admin',
-		    password: 'Sourav@123',
-		)
-            }
-        }
-    stage('Artifacts upload') {
-      steps {     
-		rtUpload (
-    serverId: 'jfrog1',
-    spec: '''{
-          "files": [
-            {
-              "pattern": "target/*.war",
-              "target": "example-repo-local/"
-            }
-         ]
-    }'''
-)
-      }
-    }
-
+	
 
 
 
