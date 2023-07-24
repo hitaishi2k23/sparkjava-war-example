@@ -26,6 +26,27 @@ pipeline {
   -Dsonar.login=b44f2ef23b740585326b92c191564bc580ea84e6"
         }
       } 
+	  stage('Artifacts') {
+      steps {     
+		rtServer (
+		    id: 'jfrog',
+		    timeout: 300
+		)
+            }
+        }
+    stage('Artifacts upload') {
+      steps {     
+		rtUpload (
+    serverId: 'jfrog',
+    spec: '''{
+          "files": [
+            {
+              "pattern": "target/*.war",
+              "target": "example-repo-local/"
+            }
+         ]
+    }'''
+)
 
 
 
