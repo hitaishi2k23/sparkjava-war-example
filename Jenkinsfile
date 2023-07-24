@@ -31,7 +31,7 @@ pipeline {
 		rtServer (
 		    id: 'jfrog1',
 		    timeout: 300,
-		    url: 'http://52.6.97.59:8082/artifactory',
+		    url: 'http://52.6.97.59:8082/',
 		    username: 'admin',
 		    password: 'Sourav@123',
 		)
