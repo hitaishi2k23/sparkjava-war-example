@@ -13,11 +13,6 @@ pipeline {
 		  sh 'mvn clean install'		                      
       }
     }	
-    stage('War rename') {
-	  steps {
-		  	sh 'mv target/*.war target/helloworld.war'
-        }			                      
-      }
     stage('SonarQube_Analysis') {
       steps {
 	   sh "mvn sonar:sonar \
