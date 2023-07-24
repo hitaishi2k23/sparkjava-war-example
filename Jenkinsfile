@@ -26,7 +26,10 @@ pipeline {
           scannerHome = tool 'sonar3'
         }
         withSonarQubeEnv('sonar') {
-      	  sh """${scannerHome}/bin/sonar-scanner"""
+      	  sh "mvn sonar:sonar \
+  -Dsonar.projectKey=java-app \
+  -Dsonar.host.url=http://18.207.190.98:9000 \
+  -Dsonar.login=b44f2ef23b740585326b92c191564bc580ea84e6"
         }
       } 
     }
