@@ -29,15 +29,18 @@ pipeline {
 	  stage('Artifacts') {
       steps {     
 		rtServer (
-		    id: 'jfrog',
-		    timeout: 300
+		    id: 'jfrog1',
+		    timeout: 300,
+		    url: 'http://52.6.97.59:8082/artifactory',
+		    username: 'admin',
+		    password: 'Sourav@123',
 		)
             }
         }
     stage('Artifacts upload') {
       steps {     
 		rtUpload (
-    serverId: 'jfrog',
+    serverId: 'jfrog1',
     spec: '''{
           "files": [
             {
