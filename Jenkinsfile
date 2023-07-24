@@ -7,7 +7,7 @@ pipeline {
     }
 
   environment {
-    SONAR_HOME = "${tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}"	  
+    SONAR_HOME = "${tool name: 'sonar3', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}"	  
   }  
   stages {
     stage('Execute_Maven') {
@@ -23,7 +23,7 @@ pipeline {
     stage('SonarQube_Analysis') {
       steps {
 	    script {
-          scannerHome = tool 'sonar'
+          scannerHome = tool 'sonar3'
         }
         withSonarQubeEnv('sonar') {
       	  sh """${scannerHome}bin/sonar-scanner"""
