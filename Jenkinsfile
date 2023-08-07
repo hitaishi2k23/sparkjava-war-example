@@ -23,6 +23,16 @@ pipeline {
         -Dsonar.login=sqa_1a01b25a44a1094602cacfe94f36dc888893840d"
             }
         }
+        stage('jfrog ') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('tomcat analysis ') {
+            steps {
+                sh 'mvn test'
+            }
+        }
     }
 }
 
