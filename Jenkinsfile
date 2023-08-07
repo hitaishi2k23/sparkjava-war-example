@@ -1,62 +1,20 @@
 pipeline {
     agent any
     tools {
-        maven 'maven3' 
+        maven 'maven3'
     }
-
+    
     stages {
-        stage('test') {
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-        stage('install') {
+        
+        stage('Install') {
             steps {
-                sh 'mvn install'
+                sh 'mvn clean install'
             }
-        }
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-    }
-
-post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
