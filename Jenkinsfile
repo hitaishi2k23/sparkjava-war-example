@@ -1,39 +1,28 @@
-pipeline{
+pipeline {
     agent any
     tools {
-        maven 'maven3' 
+        maven 'apache-maven-3.0.1' 
     }
 
-    stages{
-        stage("test"){
-            steps{
-                //mvn test
+    stages {
+        stage('test') {
+            steps {
                 sh 'mvn test'
-                echo "helloworld"
             }
-           
         }
-        stage("build"){
-            steps{
+        stage('install') {
+            steps {
                 sh 'mvn install'
-                echo "rintu"
             }
-           
         }
-        stage("deploy on test"){
-            steps{
-                deploy adapters: [tomcat9(credentialsId: 'deploy', path: '', url: 'http://3.93.218.23:8080/')], contextPath: 'javaapp', war: 'target/*.war'
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
             }
-           
-        }
-        stage("deploy on prod"){
-            steps{
-                echo "========executing A========"
-            }
-           
         }
     }
-    post{
+
+post{
         always{
             echo "========always========"
         }
@@ -45,3 +34,29 @@ pipeline{
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
