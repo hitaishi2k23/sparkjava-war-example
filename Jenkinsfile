@@ -25,7 +25,7 @@ pipeline {
         }
         stage('jfrog ') {
             steps {
-                sh 'mvn test'
+                sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/*.war {jfrog repo}'
             }
         }
        stage("deploy on test"){
