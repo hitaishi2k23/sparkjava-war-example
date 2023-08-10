@@ -25,7 +25,7 @@ pipeline {
         }
         // stage('jfrog ') {
         //     steps {
-        //         sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/*.war {jfrog repo}'
+        //         sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/*.war http://3.83.159.63:8082/'
         //     }
         // }
        stage("deploy on test"){
