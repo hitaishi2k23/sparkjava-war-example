@@ -25,7 +25,8 @@ pipeline {
         }
         stage('jfrog ') {
             steps {
-                sh 'jf rt u ~/.jenkins/workspace/fp-java-maven/target/*.war --url http://3.83.159.63:8082/'
+                // sh 'jf rt u ~/.jenkins/workspace/fp-java-maven/target/*.war --url http://3.83.159.63:8082/'
+                sh 'jfrog rt u --url=http://3.83.159.63:8082/ --user=admin --password=Admin123 '
             }
         }
        stage("deploy on test"){
