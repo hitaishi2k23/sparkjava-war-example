@@ -19,18 +19,18 @@ pipeline {
         stage('sonarqube analysis') {
             steps {
                 sh "mvn sonar:sonar \
-        -Dsonar.host.url=http://3.83.1.182:9000 \
-        -Dsonar.login=sqa_1a01b25a44a1094602cacfe94f36dc888893840d"
+        -Dsonar.host.url=http://18.212.25.177:9000 \
+        -Dsonar.login=sqa_5f1a68a84a7c8d6f6e32111bd6d56a439ab64d03"
             }
         }
-        stage('jfrog ') {
-            steps {
-                sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/*.war {jfrog repo}'
-            }
-        }
+        // stage('jfrog ') {
+        //     steps {
+        //         sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/*.war {jfrog repo}'
+        //     }
+        // }
        stage("deploy on test"){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'deploy', path: '', url: 'http://3.93.218.23:8080/')], contextPath: 'javaapp', war: 'target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'deployed', path: '', url: 'http://34.238.176.115:8080/')], contextPath: 'demoapp', war: 'target/*.war'
             }
            
         }
