@@ -26,7 +26,7 @@ pipeline {
         stage('jfrog ') {
             steps {
                 // sh 'jf rt u ~/.jenkins/workspace/fp-java-maven/target/*.war --url http://3.83.159.63:8082/'
-                sh 'jfrog rt u --url=http://3.83.159.63:8082/ --user=admin --password=Admin123  target/*.war  example-repo-local/ '
+                sh 'jf rt u --url=http://3.83.159.63:8082/ --user=admin --password=Admin123  target/*.war  example-repo-local/ '
                 // jfrog rt u --url=https://example.jfrog.io/artifactory --user=admin --password=password123 my-artifact.zip example-repo-local/path/to/upload/
 
             }
