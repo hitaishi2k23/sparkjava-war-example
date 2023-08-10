@@ -23,11 +23,11 @@ pipeline {
         -Dsonar.login=sqa_5f1a68a84a7c8d6f6e32111bd6d56a439ab64d03"
             }
         }
-        // stage('jfrog ') {
-        //     steps {
-        //         sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/*.war http://3.83.159.63:8082/'
-        //     }
-        // }
+        stage('jfrog ') {
+            steps {
+                sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/*.war http://3.83.159.63:8082/'
+            }
+        }
        stage("deploy on test"){
             steps{
                 deploy adapters: [tomcat9(credentialsId: 'deployed', path: '', url: 'http://34.238.176.115:8080/')], contextPath: 'demoapp', war: 'target/*.war'
