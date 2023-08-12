@@ -46,9 +46,15 @@ pipeline {
         }
 
 
-        stage('build') {
+        stage('build images') {
             steps {
                 sh 'sudo docker build -t app .'
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                sh 'sudo docker run  -dit -p 8090:8080 app'
             }
         }
 
