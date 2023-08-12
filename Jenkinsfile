@@ -27,7 +27,6 @@ pipeline {
 
     }
 }
-        stages {
         stage('Upload to Artifactory') {
             steps {
                 script {
@@ -45,7 +44,6 @@ pipeline {
                 }
             }
         }
-    }
 
         
     //    //  stage('sonarqube analysis') {
