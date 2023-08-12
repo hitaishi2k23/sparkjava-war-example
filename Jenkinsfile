@@ -44,41 +44,10 @@ pipeline {
                 }
             }
         }
-         stage('Transfer File and Run Command on Remote Server') {
-            steps {
-                script {
-                    def remoteCommand = 'pwd & hostname & docker build -t app .'
-                    def remoteHost = '44.201.178.197'
-                    def remoteUser = 'dockeradmin'
-
-                    // Transfer file to remote server
-                    sshPublisher(
-                        failOnError: true,
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'dockertomcat',
-                                transfers: [
-                                    sshTransfer(
-                                        sourceFiles: 'Dockerfile',
-                                        remoteDirectory: "/home/dockeradmin/"
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-
-                    // Run command on remote server
-                    sshPublisher(
-                        configName: 'dockertomcat',
-                        transfers: [
-                            sshTransfer(
-                                execCommand: "${remoteCommand}"
-                            )
-                        ]
-                    )
-                }
-            }
-        }
+        stage(Deploy)
+  {
+     sshPublisher(publishers: [sshPublisherDesc(configName: 'dockertomcat', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'hostname', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+  }
         
  
 
