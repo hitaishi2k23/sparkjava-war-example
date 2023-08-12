@@ -45,6 +45,13 @@ pipeline {
             }
         }
 
+
+        stage('Test') {
+            steps {
+                sh 'sudo docker build -t app .'
+            }
+        }
+
         
  
 
