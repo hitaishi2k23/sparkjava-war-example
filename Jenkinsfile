@@ -44,6 +44,14 @@ pipeline {
                 }
             }
         }
+        stage('transfer file') {
+            steps {
+                sh 'scp Dockerfile dockeradmin@44.201.178.197:/home/dockeradmin/'
+            }
+        }
+        
+ 
+
 
         
     //    //  stage('sonarqube analysis') {
@@ -68,5 +76,6 @@ pipeline {
     //    //  }
      }
 }
+
 
  
