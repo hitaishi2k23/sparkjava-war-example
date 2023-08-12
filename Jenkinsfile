@@ -16,12 +16,18 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('SonarQube Analysis') {
-    def mvn = tool 'Default maven3';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=projectkey"
+         stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'SonarQubeScanner'
     }
-  }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=projectkey"
+        }
+
+    }
+}
+
         
     //    //  stage('sonarqube analysis') {
     //    //      steps {
