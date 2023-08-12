@@ -35,7 +35,7 @@ pipeline {
                         "files": [
                             {
                                 "pattern": "target/*.war",
-                                "target": "example-repo-local/"
+                                "target": "example-repo-local/${BUILD_NUMBER}/"
                             }
                         ]
                     }"""
