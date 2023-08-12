@@ -44,9 +44,37 @@ pipeline {
                 }
             }
         }
-        stage('transfer file') {
+         stage('Transfer File and Run Command on Remote Server') {
             steps {
-                sh 'scp Dockerfile dockeradmin@44.201.178.197:/home/dockeradmin/'
+                script {
+                    def remoteCommand = 'pwd & hostname & docker build -t app .'
+
+                    // Transfer file to remote server
+                    sshPublisher(
+                        failOnError: true,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'dockertomcat',
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'Dockerfile',
+                                        remoteDirectory: "/home/dockeradmin/"
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+
+                    // Run command on remote server
+                    sshPublisher(
+                        configName: 'dockertomcat',
+                        transfers: [
+                            sshTransfer(
+                                execCommand: "${remoteCommand}"
+                            )
+                        ]
+                    )
+                }
             }
         }
         
