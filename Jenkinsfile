@@ -27,6 +27,25 @@ pipeline {
 
     }
 }
+        stages {
+        stage('Upload to Artifactory') {
+            steps {
+                script {
+                    def server = Artifactory.server 'myjfrog'
+                    def uploadSpec = """{
+                        "files": [
+                            {
+                                "pattern": "target/*.war",
+                                "target": "example-repo-local/"
+                            }
+                        ]
+                    }"""
+                    def buildInfo = server.upload(uploadSpec)
+                    server.publishBuildInfo(buildInfo)
+                }
+            }
+        }
+    }
 
         
     //    //  stage('sonarqube analysis') {
