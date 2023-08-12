@@ -48,6 +48,8 @@ pipeline {
             steps {
                 script {
                     def remoteCommand = 'pwd & hostname & docker build -t app .'
+                    def remoteHost = '44.201.178.197'
+                    def remoteUser = 'dockeradmin'
 
                     // Transfer file to remote server
                     sshPublisher(
