@@ -75,7 +75,7 @@ pipeline {
      transfers: [
       sshTransfer(
        sourceFiles: "",
-       execCommand: "cd /opt/docker & docker build -t myapp . & docker run -d --name java -p 8090:8080 myapp"
+       execCommand: "cd /opt/docker & docker build -t myapp . & docker run -dit --name java -p 8090:8080 myapp"
       )
      ])
    ])
