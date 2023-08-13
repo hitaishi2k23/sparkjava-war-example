@@ -44,7 +44,7 @@ pipeline {
                 }
             }
         }
-        stage('War file transfer') {
+        stage('file transfer') {
             steps {
  script {
   sshPublisher(
@@ -74,8 +74,7 @@ pipeline {
      verbose: true,
      transfers: [
       sshTransfer(
-       sourceFiles: "",
-       execCommand: "pwd & docker build -t myapp . & docker run -dit --name java -p 8090:8080 myapp"
+       execCommand: "docker build -t myapp . & docker run -dit --name java -p 8090:8080 myapp"
       )
      ])
    ])
