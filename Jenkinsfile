@@ -56,7 +56,6 @@ pipeline {
      transfers: [
       sshTransfer(
        sourceFiles: "target/*.war,Dockerfile"
-       execCommand: "ls -l"
       )
      ])
    ])
