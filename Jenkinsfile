@@ -44,6 +44,23 @@ pipeline {
                 }
             }
         }
+        stage('SSH transfer') {
+ script {
+  sshPublisher(
+   continueOnError: false, failOnError: true,
+   publishers: [
+    sshPublisherDesc(
+     configName: "host",
+     verbose: true,
+     transfers: [
+      sshTransfer(
+       sourceFiles: "Dockerfile",
+       execCommand: "ls -l"
+      )
+     ])
+   ])
+ }
+}
 
      }
 }
