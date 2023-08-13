@@ -27,6 +27,11 @@ pipeline {
 
     }
 }
+        stage('rename war file') {
+            steps {
+                sh 'mv target/*.war target/app.war'
+            }
+        }
         stage('Upload to Artifactory') {
             steps {
                 script {
