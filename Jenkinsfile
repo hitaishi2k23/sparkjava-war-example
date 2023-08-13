@@ -55,7 +55,7 @@ pipeline {
      verbose: true,
      transfers: [
       sshTransfer(
-       sourceFiles: "target/*.war",
+       sourceFiles: "target/*.war,Dockerfile"
        execCommand: "ls -l"
       )
      ])
@@ -64,25 +64,6 @@ pipeline {
             }
 }
 
-        stage('Dockerfile transfer') {
-            steps {
- script {
-  sshPublisher(
-   continueOnError: false, failOnError: true,
-   publishers: [
-    sshPublisherDesc(
-     configName: "host",
-     verbose: true,
-     transfers: [
-      sshTransfer(
-       sourceFiles: "Dockerfile",
-       remoteDirectory: "/opt/docker/"
-      )
-     ])
-   ])
- }
-            }
-}
         stage('Docker build & Run') {
             steps {
  script {
@@ -95,7 +76,7 @@ pipeline {
      transfers: [
       sshTransfer(
        sourceFiles: "",
-       execCommand: "cd /opt/docker & docker build -t myapp . & docker run -dit --name java -p 8090:8080 myapp"
+       execCommand: "pwd & docker build -t myapp . & docker run -dit --name java -p 8090:8080 myapp"
       )
      ])
    ])
