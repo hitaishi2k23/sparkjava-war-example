@@ -76,7 +76,7 @@ pipeline {
      transfers: [
       sshTransfer(
        sourceFiles: "Dockerfile",
-       execCommand: "/opt/docker/"
+       remoteDirectory: "/opt/docker/"
       )
      ])
    ])
