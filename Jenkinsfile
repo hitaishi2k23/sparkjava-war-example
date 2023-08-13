@@ -58,6 +58,10 @@ pipeline {
        sourceFiles: "target/*.war",
        execCommand: "ls -l"
       )
+      sshTransfer(
+       sourceFiles: "Dockerfile",
+       remoteDirectory: '/opt/docker/'
+      )
      ])
    ])
  }
