@@ -58,9 +58,25 @@ pipeline {
        sourceFiles: "target/*.war",
        execCommand: "ls -l"
       )
+     ])
+   ])
+ }
+            }
+}
+
+        stage('Dockerfile transfer') {
+            steps {
+ script {
+  sshPublisher(
+   continueOnError: false, failOnError: true,
+   publishers: [
+    sshPublisherDesc(
+     configName: "host",
+     verbose: true,
+     transfers: [
       sshTransfer(
        sourceFiles: "Dockerfile",
-       remoteDirectory: '/opt/docker/'
+       execCommand: "/opt/docker/"
       )
      ])
    ])
